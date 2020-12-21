@@ -1,0 +1,55 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Fav Movies</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <!-- Bootstrap core JavaScript-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- Page level plugin JavaScript--><script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+  
+  <script>
+
+    $(document).ready(function() {
+    $('#dataTable').dataTable( {
+        "bServerSide":false,
+        "bProcessing":true,
+        "sAjaxDataProp": "feed.entry",
+        "sAjaxSource": "https://spreadsheets.google.com/feeds/list/1bHNO7GGw7M_j_6icZs57wVfHBeMScQqvhAeuWuxwWL8/od6/public/values?alt=json",
+        "aoColumns": [
+                {"mDataProp": "gsx$title.$t"},
+                {"mDataProp": "gsx$maingenre.$t"},
+                {"mDataProp": "gsx$genre2.$t"},
+                {"mDataProp": "gsx$genre3.$t"},
+                {"mDataProp": "gsx$rankinyear.$t"}
+        ]
+    } );
+} );
+
+ 
+    
+ 
+</script>
+</head>
+
+<body>
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>MainGenre</th>
+                <th>Genre2</th>
+                <th>Genre3</th>
+                <th>RankInYear</th>
+            </tr>
+        </thead>
+        <tbody id="demo">
+
+        </tbody>
+    </table>
+</body>
+</html>
