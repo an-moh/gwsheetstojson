@@ -1,0 +1,59 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Fav Movies</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+  
+  <!-- Bootstrap core JavaScript-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <!-- Page level plugin JavaScript--><script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+  
+  <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+  <script>
+
+    $.getJSON("https://spreadsheets.google.com/feeds/list/1bHNO7GGw7M_j_6icZs57wVfHBeMScQqvhAeuWuxwWL8/od6/public/values?alt=json",
+
+        function (data){
+                var sheetData = data.feed.entry;
+                var i;
+                for (i=0; i<sheetData.length; i++){
+                    var testtitle = data.feed.entry[i]['gsx$title']['$t'];
+                    var testmaingenre = data.feed.entry[i]['gsx$maingenre']['$t'];
+                    var testgenre2 = data.feed.entry[i]['gsx$genre2']['$t'];
+                    var testgenre3 = data.feed.entry[i]['gsx$genre3']['$t'];
+                    var testrank = data.feed.entry[i]['gsx$rankinyear']['$t'];
+
+                    document.getElementById('demo').innerHTML += ('<td>' + testtitle +'</td>' +'<td>' + testmaingenre +'</td>' +'<td>' + testgenre2 +'</td>' +'<td>' + testgenre3 +'</td>' +'<td>' + testrank +'</td>');
+                }
+
+        }
+
+    );  
+    
+ 
+</script>
+</head>
+
+<body>
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Main_Genre</th>
+                <th>Genre_2</th>
+                <th>Genre_3</th>
+                <th>Rank_In_Year</th>
+            </tr>
+        </thead>
+        <tbody id="demo">
+
+        </tbody>
+    </table>
+</body>
+</html>
